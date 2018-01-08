@@ -25,8 +25,18 @@
 {
     [super viewDidLoad];
     
-    [self startHTTPServer];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        [self setupHTTPCache];
+    });
     [self reloadData];
+}
+
+- (void)setupHTTPCache
+{
+    [KTVHTTPCache logSetConsoleLogEnable:YES];
+    [self startHTTPServer];
+    [self configurationFilters];
 }
 
 - (void)startHTTPServer
@@ -38,12 +48,28 @@
     } else {
         NSLog(@"Proxy Start Success");
     }
-    
-    // URL Filter. Open if need.
+}
+
+- (void)configurationFilters
+{
 #if 0
+    // URL Filter
     [KTVHTTPCache cacheSetURLFilterForArchive:^NSString *(NSString * originalURLString) {
         NSLog(@"URL Filter reviced URL, %@", originalURLString);
         return originalURLString;
+    }];
+#endif
+    
+#if 0
+    // Content-Type Filter
+    [KTVHTTPCache cacheSetContentTypeFilterForResponseVerify:^BOOL(NSString * URLString,
+                                                                   NSString * contentType,
+                                                                   NSArray<NSString *> * defaultAcceptContentTypes) {
+        NSLog(@"Content-Type Filter reviced Content-Type, %@", contentType);
+        if ([defaultAcceptContentTypes containsObject:contentType]) {
+            return YES;
+        }
+        return NO;
     }];
 #endif
 }
