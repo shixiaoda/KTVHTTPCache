@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		424C0EA42005E83D00D37E59 /* KTVHCM3u8Unit.h in Headers */ = {isa = PBXBuildFile; fileRef = 424C0EA22005E83D00D37E59 /* KTVHCM3u8Unit.h */; };
+		424C0EA52005E83D00D37E59 /* KTVHCM3u8Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C0EA32005E83D00D37E59 /* KTVHCM3u8Unit.m */; };
+		424C0EA72005E8F800D37E59 /* KTVHCM3u8Tags.h in Headers */ = {isa = PBXBuildFile; fileRef = 424C0EA62005E8F800D37E59 /* KTVHCM3u8Tags.h */; };
+		424C0EAE2005E94C00D37E59 /* NSObject+YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 424C0EA92005E94B00D37E59 /* NSObject+YYModel.h */; };
+		424C0EAF2005E94C00D37E59 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C0EAA2005E94B00D37E59 /* NSObject+YYModel.m */; };
+		424C0EB02005E94C00D37E59 /* YYClassInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 424C0EAB2005E94B00D37E59 /* YYClassInfo.h */; };
+		424C0EB12005E94C00D37E59 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C0EAC2005E94B00D37E59 /* YYClassInfo.m */; };
+		424C0EB22005E94C00D37E59 /* YYModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 424C0EAD2005E94B00D37E59 /* YYModel.h */; };
+		424C0EB720060D5D00D37E59 /* KTVHCM3u8UnitQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 424C0EB520060D5D00D37E59 /* KTVHCM3u8UnitQueue.h */; };
+		424C0EB820060D5D00D37E59 /* KTVHCM3u8UnitQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 424C0EB620060D5D00D37E59 /* KTVHCM3u8UnitQueue.m */; };
 		9C0DE66E1F45A002003561E5 /* KTVHCDownload.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C0DE66C1F45A002003561E5 /* KTVHCDownload.h */; };
 		9C0DE66F1F45A002003561E5 /* KTVHCDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 9C0DE66D1F45A002003561E5 /* KTVHCDownload.m */; };
 		9C0DE6721F45A6F0003561E5 /* KTVHCError.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C0DE6701F45A6F0003561E5 /* KTVHCError.h */; };
@@ -84,6 +94,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		424C0EA22005E83D00D37E59 /* KTVHCM3u8Unit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTVHCM3u8Unit.h; sourceTree = "<group>"; };
+		424C0EA32005E83D00D37E59 /* KTVHCM3u8Unit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KTVHCM3u8Unit.m; sourceTree = "<group>"; };
+		424C0EA62005E8F800D37E59 /* KTVHCM3u8Tags.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTVHCM3u8Tags.h; sourceTree = "<group>"; };
+		424C0EA92005E94B00D37E59 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
+		424C0EAA2005E94B00D37E59 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		424C0EAB2005E94B00D37E59 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		424C0EAC2005E94B00D37E59 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
+		424C0EAD2005E94B00D37E59 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
+		424C0EB520060D5D00D37E59 /* KTVHCM3u8UnitQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KTVHCM3u8UnitQueue.h; sourceTree = "<group>"; };
+		424C0EB620060D5D00D37E59 /* KTVHCM3u8UnitQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KTVHCM3u8UnitQueue.m; sourceTree = "<group>"; };
 		9C0DE66C1F45A002003561E5 /* KTVHCDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTVHCDownload.h; sourceTree = "<group>"; };
 		9C0DE66D1F45A002003561E5 /* KTVHCDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KTVHCDownload.m; sourceTree = "<group>"; };
 		9C0DE6701F45A6F0003561E5 /* KTVHCError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KTVHCError.h; sourceTree = "<group>"; };
@@ -159,6 +179,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		424C0E9D2005E6E900D37E59 /* KTVHVM3u8 */ = {
+			isa = PBXGroup;
+			children = (
+				424C0EA22005E83D00D37E59 /* KTVHCM3u8Unit.h */,
+				424C0EA32005E83D00D37E59 /* KTVHCM3u8Unit.m */,
+				424C0EA62005E8F800D37E59 /* KTVHCM3u8Tags.h */,
+				424C0EB520060D5D00D37E59 /* KTVHCM3u8UnitQueue.h */,
+				424C0EB620060D5D00D37E59 /* KTVHCM3u8UnitQueue.m */,
+			);
+			path = KTVHVM3u8;
+			sourceTree = "<group>";
+		};
+		424C0EA82005E94B00D37E59 /* YYModel */ = {
+			isa = PBXGroup;
+			children = (
+				424C0EA92005E94B00D37E59 /* NSObject+YYModel.h */,
+				424C0EAA2005E94B00D37E59 /* NSObject+YYModel.m */,
+				424C0EAB2005E94B00D37E59 /* YYClassInfo.h */,
+				424C0EAC2005E94B00D37E59 /* YYClassInfo.m */,
+				424C0EAD2005E94B00D37E59 /* YYModel.h */,
+			);
+			path = YYModel;
+			sourceTree = "<group>";
+		};
 		9C0DE66B1F45A002003561E5 /* KTVHCDownload */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +312,8 @@
 		9CE118491F3C0AF400A7AE8B /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				424C0EA82005E94B00D37E59 /* YYModel */,
+				424C0E9D2005E6E900D37E59 /* KTVHVM3u8 */,
 				9CA3C5441F40025400D857EA /* KTVHTTPCacheImp.h */,
 				9CA3C5451F40025400D857EA /* KTVHTTPCacheImp.m */,
 				9C1699331F3D476A00B1CA76 /* KTVHCDataStorage */,
@@ -307,17 +353,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C4D70FD1FD68C9C00459DE0 /* KTVHTTPCache.h in Headers */,
+				424C0EA72005E8F800D37E59 /* KTVHCM3u8Tags.h in Headers */,
 				9CA3C5461F40025400D857EA /* KTVHTTPCacheImp.h in Headers */,
 				9C9249E81F3D8C3000647335 /* KTVHCDataReader.h in Headers */,
 				9C1699361F3D47AE00B1CA76 /* KTVHCDataRequest.h in Headers */,
 				9C6C4AFB1F4ED22100699C4E /* KTVHCDataResponse.h in Headers */,
 				9CD08A571F453437000F036F /* KTVHCLog.h in Headers */,
 				9C0DE66E1F45A002003561E5 /* KTVHCDownload.h in Headers */,
+				424C0EB720060D5D00D37E59 /* KTVHCM3u8UnitQueue.h in Headers */,
 				9C0DE6771F45A778003561E5 /* KTVHCCommon.h in Headers */,
 				9C0DE6721F45A6F0003561E5 /* KTVHCError.h in Headers */,
 				9CA3C5421F3FFFC500D857EA /* KTVHCDataCacheItem.h in Headers */,
+				424C0EA42005E83D00D37E59 /* KTVHCM3u8Unit.h in Headers */,
 				9CA8C7AE1F404DD4004854BC /* KTVHCDataCacheItemZone.h in Headers */,
 				9C9249BA1F3D585A00647335 /* KTVHCDataUnitPool.h in Headers */,
+				424C0EB22005E94C00D37E59 /* YYModel.h in Headers */,
 				9C8DC2841F3C57F1002F1978 /* KTVHCURLTools.h in Headers */,
 				9CF9551D1F3C4B6300321CF6 /* KTVHCHTTPRequest.h in Headers */,
 				9C9249B61F3D584C00647335 /* KTVHCDataUnit.h in Headers */,
@@ -325,6 +375,7 @@
 				9C9249BE1F3D588200647335 /* KTVHCDataUnitQueue.h in Headers */,
 				9CF955251F3C4B9700321CF6 /* KTVHCHTTPResponse.h in Headers */,
 				9C9249DF1F3D899B00647335 /* KTVHCDataFileSource.h in Headers */,
+				424C0EB02005E94C00D37E59 /* YYClassInfo.h in Headers */,
 				9CF955191F3C357D00321CF6 /* KTVHCHTTPConnection.h in Headers */,
 				9C9249C21F3D594000647335 /* KTVHCDataUnitItem.h in Headers */,
 				9C924A1B1F3E403300647335 /* KTVHCPathTools.h in Headers */,
@@ -336,6 +387,7 @@
 				9CE118551F3C27F400A7AE8B /* KTVHCHTTPURL.h in Headers */,
 				9C924A0B1F3DF67500647335 /* KTVHCDataSourceQueue.h in Headers */,
 				9C9249E31F3D89B100647335 /* KTVHCDataNetworkSource.h in Headers */,
+				424C0EAE2005E94C00D37E59 /* NSObject+YYModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,14 +477,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				9C1699371F3D47AE00B1CA76 /* KTVHCDataRequest.m in Sources */,
+				424C0EB820060D5D00D37E59 /* KTVHCM3u8UnitQueue.m in Sources */,
 				9CE1AF811FAB378600ACB1AC /* KTVHCHTTPResponsePing.m in Sources */,
 				9CA3C5471F40025400D857EA /* KTVHTTPCacheImp.m in Sources */,
 				9CF9551A1F3C357D00321CF6 /* KTVHCHTTPConnection.m in Sources */,
 				9C9249CF1F3D84BE00647335 /* KTVHCDataStorage.m in Sources */,
 				9CF955261F3C4B9700321CF6 /* KTVHCHTTPResponse.m in Sources */,
+				424C0EAF2005E94C00D37E59 /* NSObject+YYModel.m in Sources */,
 				9CA8C7AF1F404DD4004854BC /* KTVHCDataCacheItemZone.m in Sources */,
 				9C9249E91F3D8C3000647335 /* KTVHCDataReader.m in Sources */,
 				9CD08A581F453437000F036F /* KTVHCLog.m in Sources */,
+				424C0EA52005E83D00D37E59 /* KTVHCM3u8Unit.m in Sources */,
 				9C9249B71F3D584C00647335 /* KTVHCDataUnit.m in Sources */,
 				9C9249E01F3D899B00647335 /* KTVHCDataFileSource.m in Sources */,
 				9C0DE66F1F45A002003561E5 /* KTVHCDownload.m in Sources */,
@@ -450,6 +505,7 @@
 				9CF9551E1F3C4B6300321CF6 /* KTVHCHTTPRequest.m in Sources */,
 				9C0DE6731F45A6F0003561E5 /* KTVHCError.m in Sources */,
 				9C924A201F3F326700647335 /* KTVHCDataCallback.m in Sources */,
+				424C0EB12005E94C00D37E59 /* YYClassInfo.m in Sources */,
 				9C9249D41F3D88F900647335 /* KTVHCDataSourcer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

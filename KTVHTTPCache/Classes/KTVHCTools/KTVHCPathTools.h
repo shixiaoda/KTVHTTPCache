@@ -14,6 +14,7 @@
 
 + (NSString *)absolutePathWithRelativePath:(NSString *)relativePath;
 + (NSString *)absolutePathForArchiver;
++ (NSString *)absolutePathForM3u8Archiver;
 + (NSString *)absolutePathForLog;
 + (NSString *)absolutePathForDirectoryWithURLString:(NSString *)URLString;
 + (NSString *)relativePathForFileWithURLString:(NSString *)URLString offset:(long long)offset;

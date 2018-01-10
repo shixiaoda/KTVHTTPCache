@@ -16,10 +16,9 @@
 
 @interface KTVHCDataUnitPool () <NSLocking>
 
-
 @property (nonatomic, strong) NSRecursiveLock * coreLock;
 @property (nonatomic, strong) KTVHCDataUnitQueue * unitQueue;
-
+@property (nonatomic, strong) KTVHCM3u8UnitQueue * m3u8UnitQueue;
 
 @end
 
@@ -43,6 +42,7 @@
     {
         self.coreLock = [[NSRecursiveLock alloc] init];
         self.unitQueue = [KTVHCDataUnitQueue unitQueueWithArchiverPath:[KTVHCPathTools absolutePathForArchiver]];
+        self.m3u8UnitQueue = [KTVHCM3u8UnitQueue unitQueueWithArchiverPath:[KTVHCPathTools absolutePathForM3u8Archiver]];
     }
     return self;
 }

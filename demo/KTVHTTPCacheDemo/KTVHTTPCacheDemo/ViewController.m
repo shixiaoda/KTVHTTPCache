@@ -25,6 +25,8 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"%@",NSHomeDirectory());
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         [self setupHTTPCache];
@@ -34,7 +36,7 @@
 
 - (void)setupHTTPCache
 {
-    [KTVHTTPCache logSetConsoleLogEnable:YES];
+//    [KTVHTTPCache logSetConsoleLogEnable:YES];
     [self startHTTPServer];
     [self configurationFilters];
 }
@@ -81,9 +83,9 @@
     MediaItem * item2 = [[MediaItem alloc] initWithTitle:@"张惠妹 - 你是爱我的"
                                                URLString:@"http://aliuwmp3.changba.com/userdata/video/3B1DDE764577E0529C33DC5901307461.mp4"];
     MediaItem * item3 = [[MediaItem alloc] initWithTitle:@"hush! - 都是你害的"
-                                               URLString:@"http://qiniuuwmp3.changba.com/941946870.mp4"];
+                                               URLString:@"http://cache.m.iqiyi.com/mus/8236947609/831cff3f0caa4d8745dc8015cf3b587b/afbe8fd3d73448c9//20170710/02/a2/98e65e9e1355abb1de53fe4f1185e4b5.m3u8?qd_originate=tmts_py&tvid=8236947609&bossStatus=0&qd_vip=0&px=&qd_src=null&prv=&previewType=&previewTime=&from=&qd_time=1515578882691&qd_p=7f000001&qd_asc=861afbbe3619459c20cd3703398cb8c7&qypid=8236947609_04000000001000000000_2&qd_k=5cb7770d135b10727bb10d80e53a6fe1&isdol=0&code=2&vf=d37d229263ca4b2b3f66a1d219a449ef&np_tag=nginx_part_tag&v=528627527&qypid=8236947609_-102109"];
     MediaItem * item4 = [[MediaItem alloc] initWithTitle:@"张学友 - 我真的受伤了"
-                                               URLString:@"http://lzaiuw.changba.com/userdata/video/940071102.mp4"];
+                                               URLString:@"http://res.pmit.cn/F3Video/hls/a5814959235386e4e7126573030c4d79/list.m3u8"];
     self.medaiItems = @[item1, item2, item3, item4];
     [self.tableView reloadData];
 }

@@ -30,9 +30,9 @@
 		9CA0A6431F3C04350034965E /* MultipartMessageHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA0A6071F3C04350034965E /* MultipartMessageHeader.m */; };
 		9CA0A6441F3C04350034965E /* MultipartMessageHeaderField.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CA0A6081F3C04350034965E /* MultipartMessageHeaderField.h */; };
 		9CA0A6451F3C04350034965E /* MultipartMessageHeaderField.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA0A6091F3C04350034965E /* MultipartMessageHeaderField.m */; };
-		9CA0A6461F3C04350034965E /* HTTPAsyncFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CA0A60B1F3C04350034965E /* HTTPAsyncFileResponse.h */; };
+		9CA0A6461F3C04350034965E /* HTTPAsyncFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CA0A60B1F3C04350034965E /* HTTPAsyncFileResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9CA0A6471F3C04350034965E /* HTTPAsyncFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA0A60C1F3C04350034965E /* HTTPAsyncFileResponse.m */; };
-		9CA0A6481F3C04350034965E /* HTTPDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CA0A60D1F3C04350034965E /* HTTPDataResponse.h */; };
+		9CA0A6481F3C04350034965E /* HTTPDataResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CA0A60D1F3C04350034965E /* HTTPDataResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9CA0A6491F3C04350034965E /* HTTPDataResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA0A60E1F3C04350034965E /* HTTPDataResponse.m */; };
 		9CA0A64A1F3C04350034965E /* HTTPDynamicFileResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 9CA0A60F1F3C04350034965E /* HTTPDynamicFileResponse.h */; };
 		9CA0A64B1F3C04350034965E /* HTTPDynamicFileResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CA0A6101F3C04350034965E /* HTTPDynamicFileResponse.m */; };
@@ -298,6 +298,8 @@
 				9CA0A63D1F3C04350034965E /* HTTPResponse.h in Headers */,
 				9CA0A6381F3C04350034965E /* HTTPConnection.h in Headers */,
 				9CA0A6421F3C04350034965E /* MultipartMessageHeader.h in Headers */,
+				9CA0A6461F3C04350034965E /* HTTPAsyncFileResponse.h in Headers */,
+				9CA0A6481F3C04350034965E /* HTTPDataResponse.h in Headers */,
 				9CA0A64E1F3C04350034965E /* HTTPFileResponse.h in Headers */,
 				9CA0A6601F3C04350034965E /* DDTTYLogger.h in Headers */,
 				9CA0A65A1F3C04350034965E /* DDASLLogger.h in Headers */,
@@ -306,7 +308,6 @@
 				9CA0A6641F3C04350034965E /* DispatchQueueLogFormatter.h in Headers */,
 				9CA0A6361F3C04350034965E /* HTTPAuthenticationRequest.h in Headers */,
 				9CA0A6441F3C04350034965E /* MultipartMessageHeaderField.h in Headers */,
-				9CA0A6461F3C04350034965E /* HTTPAsyncFileResponse.h in Headers */,
 				9CA0A6341F3C04350034965E /* DDRange.h in Headers */,
 				9CA0A6501F3C04350034965E /* HTTPRedirectResponse.h in Headers */,
 				9CA0A65C1F3C04350034965E /* DDFileLogger.h in Headers */,
@@ -319,7 +320,6 @@
 				9CA0A6521F3C04350034965E /* WebSocket.h in Headers */,
 				9CA0A64C1F3C04350034965E /* HTTPErrorResponse.h in Headers */,
 				9CA0A6581F3C04350034965E /* DDAbstractDatabaseLogger.h in Headers */,
-				9CA0A6481F3C04350034965E /* HTTPDataResponse.h in Headers */,
 				9CA0A6621F3C04350034965E /* ContextFilterLogFormatter.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

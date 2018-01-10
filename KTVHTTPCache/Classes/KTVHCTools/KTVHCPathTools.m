@@ -24,6 +24,12 @@
     return [self absolutePathWithRelativePath:relativePath];
 }
 
++ (NSString *)absolutePathForM3u8Archiver
+{
+    NSString * relativePath = [[self relativePathForRootDirectory] stringByAppendingPathComponent:@"KTVHTTPCache_m3u8.archive"];
+    return [self absolutePathWithRelativePath:relativePath];
+}
+
 + (NSString *)absolutePathForLog
 {
     NSString * relativePath = [[self relativePathForRootDirectory] stringByAppendingPathComponent:@"KTVHTTPCache.log"];

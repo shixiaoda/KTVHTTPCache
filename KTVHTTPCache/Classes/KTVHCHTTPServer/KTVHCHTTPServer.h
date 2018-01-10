@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class HTTPServer;
 
 @interface KTVHCHTTPServer : NSObject
 
@@ -18,6 +19,7 @@
 + (instancetype)server;
 
 @property (nonatomic, assign, readonly) BOOL running;
+@property (nonatomic, strong) HTTPServer * coreHTTPServer;
 
 - (void)start:(NSError **)error;
 - (void)stop;

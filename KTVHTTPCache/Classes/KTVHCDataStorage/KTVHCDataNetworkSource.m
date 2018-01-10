@@ -406,7 +406,16 @@ static BOOL (^globalContentTypeFilterBlock)(NSString *, NSString *, NSArray <NSS
     
     [[KTVHCDataUnitPool unitPool] unit:self.URLString updateResponseHeaderFields:response.allHeaderFields];
     
-    NSString * relativePath = [KTVHCPathTools relativePathForFileWithURLString:self.URLString offset:self.offset];
+    NSString * URLString = self.URLString;
+    long long offset = self.offset;
+    
+    KTVHCM3u8Unit * m3u8Unit = [[KTVHCDataUnitPool unitPool].m3u8UnitQueue unitWithTSURLString:URLString];
+    if (m3u8Unit) {
+        URLString = m3u8Unit.URLString;
+        offset = m3u8Unit.currentUnitItem.offset;
+    }
+    
+    NSString * relativePath = [KTVHCPathTools relativePathForFileWithURLString:URLString offset:offset];
     self.unitItem = [KTVHCDataUnitItem unitItemWithOffset:self.offset relativePath:relativePath];
     self.unitItem.writing = YES;
     
