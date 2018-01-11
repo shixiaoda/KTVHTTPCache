@@ -359,19 +359,22 @@ static BOOL (^globalContentTypeFilterBlock)(NSString *, NSString *, NSArray <NSS
         contentRange = [response.allHeaderFields objectForKey:@"content-range"];
     }
     
-    if (contentRange.length > 0 && range.location != NSNotFound)
-    {
+    if (contentRange.length > 0 && range.location != NSNotFound) {
         self.totalContentLength = [contentRange substringFromIndex:range.location + range.length].longLongValue;
         self.currentContentLength = [contentLength longLongValue];
-        
-        if (self.length == KTVHCDataNetworkSourceLengthMaxVaule) {
-            self.length = self.totalContentLength - self.offset;
-        }
-        
-        if (self.currentContentLength > 0 && self.currentContentLength == self.length) {
-            return YES;
-        }
+    } else {
+        self.totalContentLength = [contentLength longLongValue];
+        self.currentContentLength = [contentLength longLongValue];
     }
+    
+    if (self.length == KTVHCDataNetworkSourceLengthMaxVaule) {
+        self.length = self.totalContentLength - self.offset;
+    }
+    
+    if (self.currentContentLength > 0 && self.currentContentLength == self.length) {
+        return YES;
+    }
+    
     return NO;
 }
 

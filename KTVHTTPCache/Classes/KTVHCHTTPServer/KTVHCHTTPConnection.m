@@ -51,32 +51,26 @@
     {
         case KTVHCHTTPURLTypeM3u8:
         {
-//            NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).lastObject stringByAppendingPathComponent:@"index.m3u8"];
-            
             KTVHCM3u8Unit * m3u8Unit = [[KTVHCDataUnitPool unitPool].m3u8UnitQueue unitWithUniqueIdentifier:URL.originalURLString];
             if (m3u8Unit == nil) {
                 m3u8Unit = [[KTVHCM3u8Unit alloc] initWithContentOfURL:URL.originalURLString error:nil];
-//                [m3u8Unit generateProxyM3u8ToPath:nil proxyURLStringBlock:^NSString *(NSString * originalUrlstring) {
-//                    NSString *proxyURLString = originalUrlstring;
-//                    if (![proxyURLString hasPrefix:@"http"]) {
-//                        proxyURLString = [[m3u8Unit.URLString stringByDeletingLastPathComponent] stringByAppendingPathComponent:proxyURLString];
-//                    }
-//
-//                    KTVHCHTTPURL * url = [KTVHCHTTPURL URLWithOriginalURLString:proxyURLString];
-//                    proxyURLString = [url proxyURLStringWithServerPort:[KTVHCHTTPServer server].coreHTTPServer.listeningPort];
-//
-//                    return proxyURLString;
-//
-//                } error:nil];
+                [m3u8Unit proxySegmentURLStringWithBlock:^NSString *(NSString * originalUrlstring) {
+                    NSString *proxyURLString = originalUrlstring;
+                    
+                    if (![proxyURLString hasPrefix:@"http"]) {
+                        proxyURLString = [[m3u8Unit.URLString stringByDeletingLastPathComponent] stringByAppendingPathComponent:proxyURLString];
+                    }
+
+                    KTVHCHTTPURL * url = [KTVHCHTTPURL URLWithOriginalURLString:proxyURLString];
+                    proxyURLString = [url proxyURLStringWithServerPort:[KTVHCHTTPServer server].coreHTTPServer.listeningPort];
+                    return proxyURLString;
+                }];
                 
                 [[KTVHCDataUnitPool unitPool].m3u8UnitQueue putUnit:m3u8Unit];
-                
                 [[KTVHCDataUnitPool unitPool].m3u8UnitQueue archive];
             }
             
-            NSData *data = [m3u8Unit.originalText dataUsingEncoding:NSUTF8StringEncoding];
-            return [[HTTPDataResponse alloc] initWithData:data];
-//            return [[HTTPAsyncFileResponse alloc] initWithFilePath:path forConnection:self];
+            return [[HTTPDataResponse alloc] initWithData:m3u8Unit.proxyTextData?m3u8Unit.originalTextData:m3u8Unit.originalTextData];
         }
         case KTVHCHTTPURLTypePing:
         {

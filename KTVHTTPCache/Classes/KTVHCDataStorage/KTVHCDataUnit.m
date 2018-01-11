@@ -185,6 +185,26 @@
             }
         }
     }
+    else
+    {
+        NSString * contentLength = [self.responseHeaderFields objectForKey:@"Content-Length"];
+        if (!contentLength) {
+            contentLength = [self.responseHeaderFields objectForKey:@"content-length"];
+        }
+        long long totalContentLength = [contentLength longLongValue];
+        if (self.totalContentLength != totalContentLength)
+        {
+            self.totalContentLength = totalContentLength;
+            
+            KTVHCLogDataUnit(@"set total content length, %lld", totalContentLength);
+            
+            if ([self.delegate respondsToSelector:@selector(unitDidUpdateTotalContentLength:)]) {
+                [KTVHCDataCallback callbackWithQueue:self.delegateQueue block:^{
+                    [self.delegate unitDidUpdateTotalContentLength:self];
+                }];
+            }
+        }
+    }
 }
 
 

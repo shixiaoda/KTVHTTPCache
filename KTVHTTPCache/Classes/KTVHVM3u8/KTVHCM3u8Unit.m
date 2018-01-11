@@ -28,6 +28,13 @@
 
 @end
 
+@interface KTVHCM3u8Unit ()
+@property (nonatomic, copy) NSString *originalText;
+@property (nonatomic, copy) NSString *proxyText;
+@property (nonatomic, strong) NSData *proxyTextData;
+@property (nonatomic, strong) NSData *originalTextData;
+@end
+
 @implementation KTVHCM3u8Unit
 
 - (instancetype)initWithContentOfURL:(NSString *)URLString error:(NSError **)error
@@ -39,7 +46,7 @@
         NSString *string = [[NSString alloc] initWithContentsOfURL:[NSURL URLWithString:URLString] encoding:NSUTF8StringEncoding error:error];
         
         self.originalText = string;
-        
+        self.originalTextData = [self.originalText dataUsingEncoding:NSUTF8StringEncoding];
         [self parseM3u8String];
     }
     
@@ -109,15 +116,15 @@
     }
 }
 
-- (BOOL)generateProxyM3u8ToPath:(NSString *)path proxyURLStringBlock:(KTVHCM3u8URLFilterBlock)block error:(NSError *)error
+- (BOOL)proxySegmentURLStringWithBlock:(KTVHCM3u8URLFilterBlock)block
 {
     self.proxyText = self.originalText;
     for (NSString *URLString in self.segmentList) {
         NSString *proxyURLString = block(URLString);
         self.proxyText = [self.proxyText stringByReplacingOccurrencesOfString:URLString withString:proxyURLString];
+        self.proxyTextData = [self.proxyText dataUsingEncoding:NSUTF8StringEncoding];
     }
     
-//    BOOL success = [self.proxyText writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:&error];
     return YES;
 }
 
