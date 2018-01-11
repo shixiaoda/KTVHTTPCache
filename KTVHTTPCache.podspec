@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
   s.frameworks          = "UIKit", "Foundation"
   s.requires_arc        = true
   s.dependency 'CocoaHTTPServer', '~> 2.3'
+  s.dependency 'YYModel'
 end
