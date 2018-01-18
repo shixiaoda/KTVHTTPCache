@@ -224,8 +224,8 @@
 				TargetAttributes = {
 					9C7A44B71F3C09CF00ED01BA = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = TW8SS868PP;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = PPQFW8738B;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -435,13 +435,16 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LIBRARY = "libc++";
-				DEVELOPMENT_TEAM = TW8SS868PP;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = PPQFW8738B;
 				INFOPLIST_FILE = KTVHTTPCacheDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.libobjc.KTVHTTPCacheDemo;
 				PRODUCT_NAME = KTVHTTPCache;
+				PROVISIONING_PROFILE = "0532af35-a70d-4446-ac02-53e6b5f77cee";
+				PROVISIONING_PROFILE_SPECIFIER = "ser@babybus.com: *";
 			};
 			name = Debug;
 		};
@@ -450,13 +453,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_CXX_LIBRARY = "libc++";
-				DEVELOPMENT_TEAM = TW8SS868PP;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = KTVHTTPCacheDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.libobjc.KTVHTTPCacheDemo;
 				PRODUCT_NAME = KTVHTTPCache;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};

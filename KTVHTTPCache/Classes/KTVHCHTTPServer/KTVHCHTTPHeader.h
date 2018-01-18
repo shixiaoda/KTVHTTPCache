@@ -14,6 +14,7 @@
 #import <CocoaHTTPServer/HTTPConnection.h>
 #import <CocoaHTTPServer/HTTPMessage.h>
 #import <CocoaHTTPServer/HTTPResponse.h>
-
+#import <CocoaHTTPServer/HTTPAsyncFileResponse.h>
+#import <CocoaHTTPServer/HTTPDataResponse.h>
 
 #endif /* KTVHCHTTPHeader_h */

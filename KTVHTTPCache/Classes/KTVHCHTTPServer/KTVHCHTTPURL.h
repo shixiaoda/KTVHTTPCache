@@ -13,6 +13,7 @@ typedef NS_ENUM(NSUInteger, KTVHCHTTPURLType)
 {
     KTVHCHTTPURLTypePing,
     KTVHCHTTPURLTypeContent,
+    KTVHCHTTPURLTypeM3u8,
 };
 
 

@@ -359,19 +359,22 @@ static BOOL (^globalContentTypeFilterBlock)(NSString *, NSString *, NSArray <NSS
         contentRange = [response.allHeaderFields objectForKey:@"content-range"];
     }
     
-    if (contentRange.length > 0 && range.location != NSNotFound)
-    {
+    if (contentRange.length > 0 && range.location != NSNotFound) {
         self.totalContentLength = [contentRange substringFromIndex:range.location + range.length].longLongValue;
         self.currentContentLength = [contentLength longLongValue];
-        
-        if (self.length == KTVHCDataNetworkSourceLengthMaxVaule) {
-            self.length = self.totalContentLength - self.offset;
-        }
-        
-        if (self.currentContentLength > 0 && self.currentContentLength == self.length) {
-            return YES;
-        }
+    } else {
+        self.totalContentLength = [contentLength longLongValue];
+        self.currentContentLength = [contentLength longLongValue];
     }
+    
+    if (self.length == KTVHCDataNetworkSourceLengthMaxVaule) {
+        self.length = self.totalContentLength - self.offset;
+    }
+    
+    if (self.currentContentLength > 0 && self.currentContentLength == self.length) {
+        return YES;
+    }
+    
     return NO;
 }
 
@@ -406,7 +409,16 @@ static BOOL (^globalContentTypeFilterBlock)(NSString *, NSString *, NSArray <NSS
     
     [[KTVHCDataUnitPool unitPool] unit:self.URLString updateResponseHeaderFields:response.allHeaderFields];
     
-    NSString * relativePath = [KTVHCPathTools relativePathForFileWithURLString:self.URLString offset:self.offset];
+    NSString * URLString = self.URLString;
+    long long offset = self.offset;
+    
+    KTVHCM3u8Unit * m3u8Unit = [[KTVHCDataUnitPool unitPool].m3u8UnitQueue unitWithTSURLString:URLString];
+    if (m3u8Unit) {
+        URLString = m3u8Unit.URLString;
+        offset = m3u8Unit.currentUnitItem.offset;
+    }
+    
+    NSString * relativePath = [KTVHCPathTools relativePathForFileWithURLString:URLString offset:offset];
     self.unitItem = [KTVHCDataUnitItem unitItemWithOffset:self.offset relativePath:relativePath];
     self.unitItem.writing = YES;
     
@@ -428,6 +440,17 @@ static BOOL (^globalContentTypeFilterBlock)(NSString *, NSString *, NSArray <NSS
     [self.writingHandle closeFile];
     self.writingHandle = nil;
     self.unitItem.writing = NO;
+    
+    KTVHCM3u8Unit * m3u8Unit = [[KTVHCDataUnitPool unitPool].m3u8UnitQueue unitWithTSURLString:self.URLString];
+    if (m3u8Unit) {
+        [m3u8Unit lock];
+        [m3u8Unit.cachedList addObject:self.URLString];
+        if (m3u8Unit.segmentList.count == m3u8Unit.cachedList.count) {
+            m3u8Unit.isFinishCache = YES;
+            [[KTVHCDataUnitPool unitPool].m3u8UnitQueue archive];
+        }
+        [m3u8Unit unlock];
+    }
     
     if (self.didClose)
     {
@@ -496,6 +519,7 @@ static BOOL (^globalContentTypeFilterBlock)(NSString *, NSString *, NSArray <NSS
                 KTVHCLogDataNetworkSource(@"complete by donwload finished, %@", self.URLString);
                 
                 self.didFinishDownload = YES;
+
                 if ([self.delegate respondsToSelector:@selector(networkSourceDidFinishDownload:)]) {
                     [KTVHCDataCallback callbackWithQueue:self.delegateQueue block:^{
                         [self.delegate networkSourceDidFinishDownload:self];

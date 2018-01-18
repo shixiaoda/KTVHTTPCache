@@ -20,7 +20,11 @@
 @property (nonatomic, copy, readonly) NSString * URLString;
 @property (nonatomic, assign, readonly) long long totalLength;
 @property (nonatomic, assign, readonly) long long cacheLength;
+@property (nonatomic, assign, readonly) NSTimeInterval totalDuration;
+@property (nonatomic, assign, readonly) NSTimeInterval totalCacheDuration;
 @property (nonatomic, copy, readonly) NSArray <KTVHCDataCacheItemZone *> * zones;
+@property (nonatomic, assign, readonly) BOOL isFinishCache;
 
+- (void)deleteAllCacheItem;
 
 @end

@@ -16,7 +16,7 @@
 @interface KTVHCHTTPServer ()
 
 
-@property (nonatomic, strong) HTTPServer * coreHTTPServer;
+
 
 
 @end

@@ -24,7 +24,7 @@ typedef NSString *(^KTVHCURLFilterBlock)(NSString *);
 #pragma mark - Class Functions
 
 + (NSString *)uniqueIdentifierWithURLString:(NSString *)URLString;
-
++ (NSString *)md5:(NSString *)URLString;
 + (NSString *)URLEncode:(NSString *)URLString;
 + (NSString *)URLDecode:(NSString *)URLString;
 
