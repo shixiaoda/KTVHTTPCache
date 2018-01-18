@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                = "KTVHTTPCache"
-  s.version             = "1.0.2"
+  s.version             = "1.1.0"
   s.summary             = "A media cache framework from Changba iOS Team."
   s.homepage            = "https://github.com/ChangbaDevs/KTVHTTPCache"
   s.license             = { :type => "MIT", :file => "LICENSE" }
@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
   s.frameworks          = "UIKit", "Foundation"
   s.requires_arc        = true
   s.dependency 'CocoaHTTPServer', '~> 2.3'
+  s.dependency 'YYModel'
 end

@@ -16,10 +16,9 @@
 
 @interface KTVHCDataUnitPool () <NSLocking>
 
-
 @property (nonatomic, strong) NSRecursiveLock * coreLock;
 @property (nonatomic, strong) KTVHCDataUnitQueue * unitQueue;
-
+@property (nonatomic, strong) KTVHCM3u8UnitQueue * m3u8UnitQueue;
 
 @end
 
@@ -43,6 +42,7 @@
     {
         self.coreLock = [[NSRecursiveLock alloc] init];
         self.unitQueue = [KTVHCDataUnitQueue unitQueueWithArchiverPath:[KTVHCPathTools absolutePathForArchiver]];
+        self.m3u8UnitQueue = [KTVHCM3u8UnitQueue unitQueueWithArchiverPath:[KTVHCPathTools absolutePathForM3u8Archiver]];
     }
     return self;
 }
@@ -110,9 +110,76 @@
         cacheItem = [KTVHCDataCacheItem itemWithURLString:obj.URLString
                                               totalLength:obj.totalContentLength
                                               cacheLength:obj.totalCacheLength
+                                            totalDuration:0
+                                       totalCacheDuration:0
                                                     zones:itemZones];
         [obj unlock];
     }
+    [self unlock];
+    return cacheItem;
+}
+
+- (KTVHCDataCacheItem *)cacheItemWithFiltedURLString:(NSString *)filtedURLString
+{
+    if (filtedURLString.length <= 0) {
+        return nil;
+    }
+    
+    [self lock];
+    KTVHCDataCacheItem * cacheItem = nil;
+    NSString * uniqueIdentifierForM3u8 = [KTVHCURLTools md5:filtedURLString];
+    KTVHCM3u8Unit * m3u8Unit = [self.m3u8UnitQueue unitWithUniqueIdentifier:uniqueIdentifierForM3u8];
+    if (m3u8Unit) {
+        __block long long totalContentLength = 0;
+        __block long long totalCacheLength = 0;
+        __block NSTimeInterval totalDuration = 0;
+        __block NSTimeInterval totalCacheDuration = 0;
+        [m3u8Unit.segmentList enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, KTVHCM3u8UnitItem * _Nonnull item, BOOL * _Nonnull stop) {
+            
+            NSString * uniqueIdentifier = [KTVHCURLTools uniqueIdentifierWithURLString:item.URIString];
+            KTVHCDataUnit *obj = [self.unitQueue unitWithUniqueIdentifier:uniqueIdentifier];
+            totalDuration += item.duration;
+            if (obj) {
+                [obj lock];
+                totalContentLength += obj.totalContentLength;
+                totalCacheDuration += item.duration;
+                [obj unlock];
+            }
+        }];
+        
+        cacheItem = [KTVHCDataCacheItem itemWithURLString:m3u8Unit.URLString
+                                              totalLength:totalContentLength
+                                              cacheLength:totalCacheLength
+                                            totalDuration:totalDuration
+                                       totalCacheDuration:totalCacheDuration
+                                                    zones:nil];
+        
+    } else {
+        NSString * uniqueIdentifier = [KTVHCURLTools uniqueIdentifierWithURLString:filtedURLString];
+        KTVHCDataUnit *obj = [self.unitQueue unitWithUniqueIdentifier:uniqueIdentifier];
+        if (obj)
+        {
+            [obj lock];
+            NSMutableArray * itemZones = [NSMutableArray array];
+            for (KTVHCDataUnitItem * unitItem in obj.unitItems)
+            {
+                KTVHCDataCacheItemZone * itemZone = [KTVHCDataCacheItemZone itemZoneWithOffset:unitItem.offset
+                                                                                        length:unitItem.length];
+                [itemZones addObject:itemZone];
+            }
+            if (itemZones.count <= 0) {
+                itemZones = nil;
+            }
+            cacheItem = [KTVHCDataCacheItem itemWithURLString:obj.URLString
+                                                  totalLength:obj.totalContentLength
+                                                  cacheLength:obj.totalCacheLength
+                                                totalDuration:0
+                                           totalCacheDuration:0
+                                                        zones:itemZones];
+            [obj unlock];
+        }
+    }
+
     [self unlock];
     return cacheItem;
 }

@@ -14,8 +14,10 @@
 
 + (NSString *)absolutePathWithRelativePath:(NSString *)relativePath;
 + (NSString *)absolutePathForArchiver;
++ (NSString *)absolutePathForM3u8Archiver;
 + (NSString *)absolutePathForLog;
 + (NSString *)absolutePathForDirectoryWithURLString:(NSString *)URLString;
++ (NSString *)absolutePathForDirectoryWithFltedURLString:(NSString *)FiltedURLString;
 + (NSString *)relativePathForFileWithURLString:(NSString *)URLString offset:(long long)offset;
 
 + (void)createFolderIfNeed:(NSString *)folderPath;

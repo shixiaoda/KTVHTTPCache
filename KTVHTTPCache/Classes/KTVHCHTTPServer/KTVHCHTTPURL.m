@@ -18,7 +18,7 @@ static NSString * const KTVHCHTTPURL_Key_RequestType = @"requestType";
 
 static NSString * const KTVHCHTTPURL_Vaule_RequestType_Content = @"content";
 static NSString * const KTVHCHTTPURL_Vaule_RequestType_Ping= @"ping";
-
+static NSString * const KTVHCHTTPURL_Vaule_RequestType_M3u8= @"m3u8";
 
 @interface KTVHCHTTPURL ()
 
@@ -66,8 +66,14 @@ static NSString * const KTVHCHTTPURL_Vaule_RequestType_Ping= @"ping";
     {
         KTVHCLogAlloc(self);
         
-        self.type = KTVHCHTTPURLTypeContent;
         self.originalURLString = [originalURLString copy];
+        
+        NSString * lastPathComponent = [NSURL URLWithString:self.originalURLString].lastPathComponent;
+        if ([lastPathComponent rangeOfString:KTVHCHTTPURL_Vaule_RequestType_M3u8].length > 0) {
+            self.type = KTVHCHTTPURLTypeM3u8;
+        } else {
+            self.type = KTVHCHTTPURLTypeContent;
+        }
         
         KTVHCLogHTTPURL(@"Content, original url, %@", self.originalURLString);
     }
@@ -120,6 +126,10 @@ static NSString * const KTVHCHTTPURL_Vaule_RequestType_Ping= @"ping";
                         {
                             self.type = KTVHCHTTPURLTypeContent;
                         }
+                        else if ([value isEqualToString:KTVHCHTTPURL_Vaule_RequestType_M3u8])
+                        {
+                            self.type = KTVHCHTTPURLTypeM3u8;
+                        }
                     }
                 }
             }
@@ -152,6 +162,9 @@ static NSString * const KTVHCHTTPURL_Vaule_RequestType_Ping= @"ping";
     {
         case KTVHCHTTPURLTypePing:
             requestType = KTVHCHTTPURL_Vaule_RequestType_Ping;
+            break;
+        case KTVHCHTTPURLTypeM3u8:
+            requestType = KTVHCHTTPURL_Vaule_RequestType_M3u8;
             break;
         default:
             break;

@@ -24,6 +24,12 @@
     return [self absolutePathWithRelativePath:relativePath];
 }
 
++ (NSString *)absolutePathForM3u8Archiver
+{
+    NSString * relativePath = [[self relativePathForRootDirectory] stringByAppendingPathComponent:@"KTVHTTPCache_m3u8.archive"];
+    return [self absolutePathWithRelativePath:relativePath];
+}
+
 + (NSString *)absolutePathForLog
 {
     NSString * relativePath = [[self relativePathForRootDirectory] stringByAppendingPathComponent:@"KTVHTTPCache.log"];
@@ -56,6 +62,13 @@
 + (NSString *)absolutePathForDirectoryWithURLString:(NSString *)URLString
 {
     NSString * directoryName = [KTVHCURLTools uniqueIdentifierWithURLString:URLString];
+    NSString * directoryPath = [self relativePathForUnitItemDirectory:directoryName];
+    return [self absolutePathWithRelativePath:directoryPath];
+}
+
++ (NSString *)absolutePathForDirectoryWithFltedURLString:(NSString *)FiltedURLString
+{
+    NSString * directoryName = [KTVHCURLTools md5:FiltedURLString];
     NSString * directoryPath = [self relativePathForUnitItemDirectory:directoryName];
     return [self absolutePathWithRelativePath:directoryPath];
 }
