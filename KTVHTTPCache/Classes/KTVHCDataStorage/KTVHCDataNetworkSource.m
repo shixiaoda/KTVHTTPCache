@@ -14,7 +14,8 @@
 #import "KTVHCDownload.h"
 #import "KTVHCError.h"
 #import "KTVHCLog.h"
-
+#import "KTVHCURLTools.h"
+#import "KTVHCHTTPURL.h"
 
 typedef NS_ENUM(NSUInteger, KTVHCDataNetworkSourceErrorReason)
 {
@@ -448,9 +449,19 @@ static BOOL (^globalContentTypeFilterBlock)(NSString *, NSString *, NSArray <NSS
         if (m3u8Unit.segmentList.count == m3u8Unit.cachedList.count) {
             m3u8Unit.isFinishCache = YES;
             [[KTVHCDataUnitPool unitPool].m3u8UnitQueue archive];
+            [[NSNotificationCenter defaultCenter] postNotificationName:KTVHCM3u8CacheFinishNotification object:@{@"url":m3u8Unit.URLString,@"urlType":@(KTVHCHTTPURLTypeM3u8)}];
         }
         [m3u8Unit unlock];
+    } else {
+        NSString * uniqueIdentifier = [KTVHCURLTools uniqueIdentifierWithURLString:self.URLString];
+        KTVHCDataUnit *dataUnit = [[KTVHCDataUnitPool unitPool].unitQueue unitWithUniqueIdentifier:uniqueIdentifier];
+        if (dataUnit) {
+            if (dataUnit.totalContentLength == dataUnit.totalCacheLength) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:KTVHCMP4CacheFinishNotification object:@{@"url":self.URLString,@"urlType":@(KTVHCHTTPURLTypeContent)}];
+            }
+        }
     }
+    
     
     if (self.didClose)
     {

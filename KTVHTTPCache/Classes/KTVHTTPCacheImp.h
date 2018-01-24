@@ -12,7 +12,6 @@
 @class KTVHCDataRequest;
 @class KTVHCDataCacheItem;
 
-
 @interface KTVHTTPCache : NSObject
 
 
@@ -55,6 +54,9 @@
 + (void)cacheDeleteAllCache;
 + (void)cacheDeleteCacheWithURLString:(NSString *)URLString;
 
++ (BOOL)isHLS:(NSString *)URLString;
++ (NSString *)md5:(NSString *)URLString;
++ (BOOL)deleteFilesWithFltedURLString:(NSString *)URLString;
 
 #pragma mark - Data Stroage Filters
 

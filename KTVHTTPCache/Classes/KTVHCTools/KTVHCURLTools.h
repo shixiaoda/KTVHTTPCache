@@ -27,6 +27,6 @@ typedef NSString *(^KTVHCURLFilterBlock)(NSString *);
 + (NSString *)md5:(NSString *)URLString;
 + (NSString *)URLEncode:(NSString *)URLString;
 + (NSString *)URLDecode:(NSString *)URLString;
-
++ (BOOL)isHLS:(NSString *)URLString;
 
 @end

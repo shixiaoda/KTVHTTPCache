@@ -204,5 +204,16 @@ static char base64EncodingTable[64] = {
     return [URLString stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
+#pragma mark - HLS
+
++ (BOOL)isHLS:(NSString *)URLString
+{
+    NSString * lastPathComponent = [NSURL URLWithString:URLString].lastPathComponent;
+    if ([lastPathComponent rangeOfString:@".m3u8"].length > 0) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
 
 @end

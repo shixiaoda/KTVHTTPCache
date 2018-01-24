@@ -63,11 +63,10 @@
             
             [m3u8Unit proxySegmentURLStringWithBlock:^NSString *(NSString * originalUrlstring) {
                 NSString *proxyURLString = originalUrlstring;
-                
                 if (![proxyURLString hasPrefix:@"http"]) {
                     proxyURLString = [[m3u8Unit.URLString stringByDeletingLastPathComponent] stringByAppendingPathComponent:proxyURLString];
                 }
-                
+
                 KTVHCHTTPURL * url = [KTVHCHTTPURL URLWithOriginalURLString:proxyURLString];
                 proxyURLString = [url proxyURLStringWithServerPort:[KTVHCHTTPServer server].coreHTTPServer.listeningPort];
                 return proxyURLString;
