@@ -68,8 +68,7 @@ static NSString * const KTVHCHTTPURL_Vaule_RequestType_M3u8= @"m3u8";
         
         self.originalURLString = [originalURLString copy];
         
-        NSString * lastPathComponent = [NSURL URLWithString:self.originalURLString].lastPathComponent;
-        if ([lastPathComponent rangeOfString:KTVHCHTTPURL_Vaule_RequestType_M3u8].length > 0) {
+        if ([KTVHCURLTools isHLS:self.originalURLString]) {
             self.type = KTVHCHTTPURLTypeM3u8;
         } else {
             self.type = KTVHCHTTPURLTypeContent;
@@ -79,7 +78,6 @@ static NSString * const KTVHCHTTPURL_Vaule_RequestType_M3u8= @"m3u8";
     }
     return self;
 }
-
 
 #pragma mark - Server URI
 

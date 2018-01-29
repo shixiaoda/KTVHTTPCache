@@ -12,6 +12,9 @@
 #import "KTVHCDataResponse.h"
 #import "KTVHCDataCacheItem.h"
 
+extern NSString * _Nonnull const KTVHCM3u8CacheFinishNotification;
+extern NSString * _Nonnull const KTVHCMP4CacheFinishNotification;
+
 @interface KTVHCDataStorage : NSObject
 
 

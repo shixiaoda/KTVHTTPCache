@@ -66,6 +66,13 @@
     return [self absolutePathWithRelativePath:directoryPath];
 }
 
++ (NSString *)absolutePathForDirectoryWithFltedURLString:(NSString *)FiltedURLString
+{
+    NSString * directoryName = [KTVHCURLTools md5:FiltedURLString];
+    NSString * directoryPath = [self relativePathForUnitItemDirectory:directoryName];
+    return [self absolutePathWithRelativePath:directoryPath];
+}
+
 + (NSString *)relativePathForUnitItemDirectory:(NSString *)folderName
 {
     NSString * path = [[self relativePathForRootDirectory] stringByAppendingPathComponent:folderName];

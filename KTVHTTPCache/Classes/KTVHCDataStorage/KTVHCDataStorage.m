@@ -11,6 +11,9 @@
 #import "KTVHCDataPrivate.h"
 #import "KTVHCLog.h"
 
+NSString *const KTVHCM3u8CacheFinishNotification = @"KTVHCM3u8CacheFinishNotification";
+NSString *const KTVHCMP4CacheFinishNotification = @"KTVHCMP4CacheFinishNotification";
+
 @interface KTVHCDataStorage () <KTVHCDataUnitWorkingDelegate>
 
 

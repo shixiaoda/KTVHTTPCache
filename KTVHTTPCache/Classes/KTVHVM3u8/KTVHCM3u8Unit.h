@@ -16,7 +16,7 @@
 
 typedef NSString * (^KTVHCM3u8URLFilterBlock)(NSString *originalUrlstring);
 
-@interface KTVHCM3u8Unit : NSObject <NSCoding>
+@interface KTVHCM3u8Unit : NSObject <NSCoding,NSLocking>
 
 + (instancetype) new NS_UNAVAILABLE;
 - (instancetype)init NS_UNAVAILABLE;
@@ -29,6 +29,8 @@ typedef NSString * (^KTVHCM3u8URLFilterBlock)(NSString *originalUrlstring);
 
 @property (nonatomic, strong) KTVHCM3u8UnitItem *currentUnitItem;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, KTVHCM3u8UnitItem *> *segmentList;
+@property (nonatomic, strong) NSMutableArray <NSString *> *cachedList;
+@property (nonatomic, assign) BOOL isFinishCache;
 
 - (instancetype)initWithContentOfURL:(NSString *)URLString error:(NSError **)error;
 

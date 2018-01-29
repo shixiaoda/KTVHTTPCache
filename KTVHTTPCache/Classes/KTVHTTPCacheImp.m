@@ -13,6 +13,7 @@
 #import "KTVHCDownload.h"
 #import "KTVHCURLTools.h"
 #import "KTVHCLog.h"
+#import "KTVHCPathTools.h"
 
 @implementation KTVHTTPCache
 
@@ -92,6 +93,21 @@
 + (void)cacheDeleteCacheWithURLString:(NSString *)URLString
 {
     [[KTVHCDataStorage storage] deleteCacheWithURLString:URLString];
+}
+
++ (BOOL)isHLS:(NSString *)URLString
+{
+    return [KTVHCURLTools isHLS:URLString];
+}
+
++ (NSString *)md5:(NSString *)URLString
+{
+    return [KTVHCURLTools md5:URLString];
+}
+
++ (BOOL)deleteFilesWithFltedURLString:(NSString *)URLString
+{
+    return [KTVHCPathTools deleteFolderAtPath:[KTVHCPathTools absolutePathForDirectoryWithFltedURLString:URLString]];
 }
 
 + (void)cacheMergeAllCache

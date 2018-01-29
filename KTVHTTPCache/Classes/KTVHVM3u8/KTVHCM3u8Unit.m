@@ -33,6 +33,8 @@
 @property (nonatomic, copy) NSString *proxyText;
 @property (nonatomic, strong) NSData *proxyTextData;
 @property (nonatomic, strong) NSData *originalTextData;
+
+@property (nonatomic, strong) NSRecursiveLock * coreLock;
 @end
 
 @implementation KTVHCM3u8Unit
@@ -47,15 +49,17 @@
         
         self.originalText = string;
         self.originalTextData = [self.originalText dataUsingEncoding:NSUTF8StringEncoding];
-        [self parseM3u8String];
+        [self prepare];
     }
     
     return self;
 }
 
-- (void)parseM3u8String
+- (void)prepare
 {
+    self.coreLock = [[NSRecursiveLock alloc] init];
     self.segmentList = [[NSMutableDictionary alloc] init];
+    self.cachedList = [NSMutableArray array];
     
     NSRange segmentRange = [self.originalText rangeOfString:M3U8_EXTINF];
     NSString *remainingSegments = self.originalText;
@@ -122,17 +126,51 @@
     for (NSString *URLString in self.segmentList) {
         NSString *proxyURLString = block(URLString);
         self.proxyText = [self.proxyText stringByReplacingOccurrencesOfString:URLString withString:proxyURLString];
-        self.proxyTextData = [self.proxyText dataUsingEncoding:NSUTF8StringEncoding];
     }
-    
+    self.proxyTextData = [self.proxyText dataUsingEncoding:NSUTF8StringEncoding];
     return YES;
 }
 
+#pragma mark - NSCoding
+
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-    [self yy_modelEncodeWithCoder:aCoder];
+//    [self yy_modelEncodeWithCoder:aCoder];
+    [aCoder encodeObject:self.URLString forKey:@"URLString"];
+    [aCoder encodeObject:self.uniqueIdentifier forKey:@"uniqueIdentifier"];
+    [aCoder encodeObject:self.originalTextData forKey:@"originalTextData"];
+//    [aCoder encodeObject:self.proxyText forKey:@"proxyText"];
+    [aCoder encodeBool:self.isFinishCache forKey:@"isFinishCache"];
 }
 
 - (nullable instancetype)initWithCoder:(NSCoder *)aDecoder {
-    return [self yy_modelInitWithCoder:aDecoder];
+//    return [self yy_modelInitWithCoder:aDecoder];
+    if (self = [super init]) {
+        _URLString = [aDecoder decodeObjectForKey:@"URLString"];
+        _uniqueIdentifier = [aDecoder decodeObjectForKey:@"uniqueIdentifier"];
+        _originalTextData = [aDecoder decodeObjectForKey:@"originalTextData"];
+        _originalText = [[NSString alloc] initWithData:_originalTextData encoding:NSUTF8StringEncoding];
+        _isFinishCache = [aDecoder decodeBoolForKey:@"isFinishCache"];
+        
+        [self prepare];
+    }
+    return self;
+}
+
+#pragma mark - NSLocking
+
+- (void)lock
+{
+    [self.coreLock lock];
+//    for (KTVHCDataUnitItem * obj in self.unitItems) {
+//        [obj lock];
+//    }
+}
+
+- (void)unlock
+{
+//    for (KTVHCDataUnitItem * obj in self.unitItems) {
+//        [obj unlock];
+//    }
+    [self.coreLock unlock];
 }
 @end
